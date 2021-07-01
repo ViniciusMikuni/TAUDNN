@@ -1,0 +1,5 @@
+/pnfs/psi.ch/cms/trivcat/store/user/ytakahas/forVini/DNN3/data/0000/flatTuple_1.root
+/pnfs/psi.ch/cms/trivcat/store/user/ytakahas/forVini/DNN3/data/0000/flatTuple_2.root
+/pnfs/psi.ch/cms/trivcat/store/user/ytakahas/forVini/DNN3/data/0000/flatTuple_3.root
+/pnfs/psi.ch/cms/trivcat/store/user/ytakahas/forVini/DNN3/data/0000/flatTuple_4.root
+/pnfs/psi.ch/cms/trivcat/store/user/ytakahas/forVini/DNN3/data/0000/flatTuple_5.root
