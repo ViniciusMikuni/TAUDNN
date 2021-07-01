@@ -203,13 +203,13 @@ class SignalProcessor(processor.ProcessorABC):
             output['nparts_{}'.format(channel.name)].fill(dataset=dataset, nparts=channel.pfs.counts.flatten()) 
 
 
-        if opt.save_h5:
-            for channel in [pfs]:
-                data,label = channel.datah5()                    
+
+        for channel in [pfs]:
+            data,label = channel.datah5()                    
                 
-                output['ML']['data']+= data
-                output['ML']['label']+=label 
-                output['ML']['pid']+=['TAU' in dataset]*len(label)
+            output['ML']['data']+= data
+            output['ML']['label']+=label 
+            output['ML']['pid']+=['TAU' in dataset]*len(label)
                 
         
         return output
@@ -232,10 +232,9 @@ parser.add_option("--walltime",  dest="walltime", type="string", default="0:59:5
 parser.add_option("--chunk",  dest="chunk", type="long",  default=10000, help="Chunk size. Default %default")
 parser.add_option("--maxchunk",  dest="maxchunk", type="long",  default=2e6, help="Maximum number of chunks. Default %default")
 parser.add_option("--parsl",  dest="parsl", action="store_true",  default=False, help="Run without parsl. Default: False")
-parser.add_option("--save_h5",  action="store_true",  default=False, help="Save a .h5 file for ML training. Default: False")
 parser.add_option("--data",  action="store_true",  default=False, help="Use data as background. Default: False")
 
-parser.add_option("--h5folder", type="string", default="/pnfs/psi.ch/cms/trivcat/store/user/vmikuni/TAU", help="Folder to store the h5 files. Default: %default")
+parser.add_option("--h5folder", type="string", default="../h5", help="Folder to store the h5 files. Default: %default")
 parser.add_option("--year", type="int", default=17, help="max number of particles to be used. Default %default")
 
 (opt, args) = parser.parse_args()
@@ -376,8 +375,8 @@ else:
     #np.save('test.npy', output)
 for flow in output['cutflow']:
     print(flow, output['cutflow'][flow])
-if opt.save_h5:
-    Writeh5(output['ML'],"{}_{}".format(opt.samples,name),os.path.join(opt.h5folder))
+
+Writeh5(output['ML'],"{}_{}".format(opt.samples,name),os.path.join(opt.h5folder))
     
 if opt.parsl:
     parsl.dfk().cleanup()
